@@ -11,8 +11,8 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            overflow: hidden; /* Mencegah scroll karena canvas */
-            background-color: #020617; /* Solid dark blue background */
+            overflow: hidden;
+            background-color: #020617;
         }
         #plexus-canvas {
             position: fixed;
@@ -22,20 +22,25 @@
             height: 100%;
             z-index: -1;
         }
-        /* Custom scrollbar for a better look */
-        ::-webkit-scrollbar {
-            width: 8px;
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.5); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: rgba(56, 189, 248, 0.4); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(56, 189, 248, 0.6); }
+        
+        /* Animasi untuk transisi yang memukau */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        ::-webkit-scrollbar-track {
-            background: rgba(15, 23, 42, 0.5); /* slate-900 */
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(56, 189, 248, 0.4); /* sky-400 */
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(56, 189, 248, 0.6);
+        .link-card {
+            opacity: 0; /* Mulai dari tidak terlihat */
+            animation: fadeInUp 0.5s ease-out forwards;
         }
     </style>
 </head>
@@ -43,7 +48,7 @@
     <canvas id="plexus-canvas"></canvas>
 
     <main class="relative flex flex-col items-center justify-center w-full h-screen p-4 md:p-6">
-        <div class="w-full max-w-3xl h-full max-h-[95vh] bg-slate-900/70 backdrop-blur-lg rounded-2xl shadow-2xl shadow-sky-900/40 border border-slate-700/80 flex flex-col">
+        <div class="w-full max-w-4xl h-full max-h-[95vh] bg-slate-900/70 backdrop-blur-lg rounded-2xl shadow-2xl shadow-sky-900/40 border border-slate-700/80 flex flex-col">
             <!-- Header -->
             <header class="flex flex-col items-center justify-center p-6 text-center border-b border-slate-700 shrink-0">
                 <img src="https://media.licdn.com/dms/image/v2/D560BAQEt9sq9-yvfmQ/company-logo_200_200/company-logo_200_200/0/1664640134738?e=2147483647&v=beta&t=_Gs50mIebI3xDgw0GZmDJ-DbbXIEe19OQy-YMA_IRyk" 
@@ -51,32 +56,49 @@
                      class="w-20 h-20 mb-4 rounded-full shadow-lg border-2 border-sky-400/50"
                      onerror="this.onerror=null;this.src='https://placehold.co/200x200/0f172a/FFFFFF?text=Logo';">
                 <h1 class="text-2xl font-bold tracking-tight text-slate-100 md:text-3xl">
-                    Kontak Asisten Laboratorium Fisika Terapan
+                    Laboratorium Fisika Terapan
                 </h1>
                 <p class="text-sm text-slate-400 md:text-base mt-1">Periode 2025/2026</p>
             </header>
 
-            <!-- Contact List -->
-            <div id="contact-list" class="flex-grow p-4 sm:p-6 overflow-y-auto">
-                <div class="space-y-3">
-                    <!-- Data Asisten akan dimasukkan di sini oleh JavaScript -->
-                </div>
+            <!-- Content Area -->
+            <div class="flex-grow p-4 sm:p-6 overflow-y-auto">
+                
+                <!-- Akses Cepat Section -->
+                <section id="quick-links" class="mb-8">
+                    <h2 class="mb-4 text-lg font-semibold text-sky-300">Akses Cepat</h2>
+                    <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                        <!-- Links will be injected here -->
+                    </div>
+                </section>
+
+                <!-- Kontak Asisten Section -->
+                <section id="assistant-contacts">
+                    <h2 class="mb-4 text-lg font-semibold text-sky-300">Kontak Asisten</h2>
+                    <div class="space-y-3">
+                        <!-- Assistant contacts will be injected here -->
+                    </div>
+                </section>
+
             </div>
 
             <!-- Footer -->
             <footer class="p-6 text-center border-t border-slate-700 shrink-0">
                 <div class="flex items-center justify-center space-x-5">
-                    <!-- Social Media Icons -->
-                    <a href="https://www.instagram.com/lab.fisikaterapan/" target="_blank" class="text-slate-400 transition hover:text-sky-400" title="Instagram">
+                    <!-- Instagram Icon -->
+                    <a href="https://www.instagram.com/lab.fisikaterapan/" target="_blank" rel="noopener noreferrer" class="text-slate-400 transition hover:text-sky-400" title="Instagram">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
                     </a>
-                     <a href="https://t.me/PraktikumFister" target="_blank" class="text-slate-400 transition hover:text-sky-400" title="Telegram">
+                     <!-- Telegram Icon -->
+                     <a href="https://t.me/PraktikumFister" target="_blank" rel="noopener noreferrer" class="text-slate-400 transition hover:text-sky-400" title="Telegram">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"></path></svg>
                     </a>
-                    <a href="https://www.youtube.com/@lab.fisikaterapan" target="_blank" class="text-slate-400 transition hover:text-sky-400" title="YouTube">
+                    <!-- YouTube Icon -->
+                    <a href="https://tinyurl.com/YouTube-LFT" target="_blank" rel="noopener noreferrer" class="text-slate-400 transition hover:text-sky-400" title="YouTube">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"></path><path d="m10 15 5-3-5-3z"></path></svg>
                     </a>
-                    <a href="https://id.linkedin.com/company/laboratorium-fisika-terapan" target="_blank" class="text-slate-400 transition hover:text-sky-400" title="LinkedIn">
+                    <!-- LinkedIn Icon -->
+                    <a href="https://www.linkedin.com/company/laboratorium-fisika-terapan" target="_blank" rel="noopener noreferrer" class="text-slate-400 transition hover:text-sky-400" title="LinkedIn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                     </a>
                 </div>
@@ -85,44 +107,38 @@
     </main>
 
     <script>
-        // Data Asisten
-        const assistants = [
-            { name: "Agung Boynanda", initial: "AB", link: "https://t.me/agngboy" },
-            { name: "Ammar Fahmy Almasarie Nahdi", initial: "AF", link: "https://t.me/Ammarnahdi" },
-            { name: "Ana Mulyana", initial: "AN", link: "https://t.me/anamulyanaa" },
-            { name: "Angelica Gracia Natalie", initial: "AG", link: "https://t.me/angelicagracianatalie" },
-            { name: "Aptriyanti Safrina Silivani", initial: "SS", link: "https://t.me/silivani" },
-            { name: "Arya Mais", initial: "AM", link: "https://t.me/AryaMais" },
-            { name: "Chindy Astika Putri Silaban", initial: "CY", link: "https://t.me/Chindyastika" },
-            { name: "Daffa Nur Fauzan", initial: "DF", link: "https://t.me/daffanurfauzan" },
-            { name: "Dumavina Angelica Kristiani", initial: "DA", link: "https://t.me/dumavinaaaa" },
-            { name: "Ersita Kartika Putri", initial: "ER", link: "https://t.me/ersitakrtk" },
-            { name: "Fatjrin Indi Prameswari", initial: "FI", link: "https://t.me/prameswarindi" },
-            { name: "Harlan Agustiawan", initial: "HA", link: "https://t.me/harlanagustiawan" },
-            { name: "Indah Lestari", initial: "IL", link: "https://t.me/indaahlestr" },
-            { name: "Indira Azani Putri", initial: "IA", link: "https://t.me/indiraazani" },
-            { name: "Irsyad Ahmad", initial: "IR", link: "https://t.me/Markicaad" },
-            { name: "Ipan Triyuda Pratama", initial: "IT", link: "https://t.me/ipanyuda" },
-            { name: "Khalishah Fajriani", initial: "KF", link: "https://t.me/khalishahfa" },
-            { name: "Muhammad Fadhil Atala", initial: "MF", link: "https://t.me/fadhilatala" },
-            { name: "Muhammad Hikmatul Ilham", initial: "HI", link: "https://t.me/mhikmatulilham" },
-            { name: "Muhammad Rimal Daniswara", initial: "RD", link: "https://t.me/rimaldaniswara" },
-            { name: "Muhammad Rivaldy Pratama", initial: "MR", link: "https://t.me/RivaldyPratama" },
-            { name: "Nazwa Adita Amru", initial: "NA", link: "https://t.me/nazwaadita" },
-            { name: "Nazwan Naufal Azmi", initial: "NN", link: "https://t.me/nazwannaufal" },
-            { name: "Oryza Sativa", initial: "OS", link: "https://t.me/oryzative" },
-            { name: "Rizki Mikael Siregar", initial: "RM", link: "https://t.me/mikaelsrgr" },
-            { name: "Sofwa Widina", initial: "SW", link: "https://t.me/ofswa" },
-            { name: "Tabina Huriyah Ramaniya", initial: "TH", link: "https://t.me/hrtbinna" },
-            { name: "Yolla Dzakya Fathira", initial: "YZ", link: "https://t.me/Yollaaadz" },
-            { name: "Zidni Ilman", initial: "ZI", link: "https://t.me/zidniilmann" }
+        // Data Links
+        const quickLinks = [
+            { title: "File Praktikan Ganjil", href: "http://bit.ly/FilePraktikanPFDGanjil2526", icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />` },
+            { title: "Jadwal & Kelompok", href: "https://bit.ly/JadwalKelompokPFDGanjil2526", icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0h18M-7.5 12h18" />` },
+            { title: "Form Peminjaman Alat", href: "https://bit.ly/FormulirPeminjamanAlatLFT", icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM10.5 16.5h3.75" />` },
+            { title: "Form Surat Bebas", href: "http://bit.ly/PengajuanSuratBebasPraktikumFisdas2526", icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />` },
+            { title: "Ambil Surat Bebas", href: "http://bit.ly/SuratBebasPraktikumFisdas2526", icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />` },
+            { title: "Channel Telegram", href: "https://t.me/PraktikumFister", icon: `<path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"></path>` }
         ];
 
-        function displayContacts() {
-            const listContainer = document.querySelector('#contact-list .space-y-3');
-            if (!listContainer) return;
-            
-            listContainer.innerHTML = assistants.map(assistant => `
+        // Data Asisten
+        const assistants = [
+            { name: "Agung Boynanda", initial: "AB", link: "https://t.me/agngboy" }, { name: "Ammar Fahmy Almasarie Nahdi", initial: "AF", link: "https://t.me/Ammarnahdi" }, { name: "Ana Mulyana", initial: "AN", link: "https://t.me/anamulyanaa" }, { name: "Angelica Gracia Natalie", initial: "AG", link: "https://t.me/angelicagracianatalie" }, { name: "Aptriyanti Safrina Silivani", initial: "SS", link: "https://t.me/silivani" }, { name: "Arya Mais", initial: "AM", link: "https://t.me/AryaMais" }, { name: "Chindy Astika Putri Silaban", initial: "CY", link: "https://t.me/Chindyastika" }, { name: "Daffa Nur Fauzan", initial: "DF", link: "https://t.me/daffanurfauzan" }, { name: "Dumavina Angelica Kristiani", initial: "DA", link: "https://t.me/dumavinaaaa" }, { name: "Ersita Kartika Putri", initial: "ER", link: "https://t.me/ersitakrtk" }, { name: "Fatjrin Indi Prameswari", initial: "FI", link: "https://t.me/prameswarindi" }, { name: "Harlan Agustiawan", initial: "HA", link: "https://t.me/harlanagustiawan" }, { name: "Indah Lestari", initial: "IL", link: "https://t.me/indaahlestr" }, { name: "Indira Azani Putri", initial: "IA", link: "https://t.me/indiraazani" }, { name: "Irsyad Ahmad", initial: "IR", link: "https://t.me/Markicaad" }, { name: "Ipan Triyuda Pratama", initial: "IT", link: "https://t.me/ipanyuda" }, { name: "Khalishah Fajriani", initial: "KF", link: "https://t.me/khalishahfa" }, { name: "Muhammad Fadhil Atala", initial: "MF", link: "https://t.me/fadhilatala" }, { name: "Muhammad Hikmatul Ilham", initial: "HI", link: "https://t.me/mhikmatulilham" }, { name: "Muhammad Rimal Daniswara", initial: "RD", link: "https://t.me/rimaldaniswara" }, { name: "Muhammad Rivaldy Pratama", initial: "MR", link: "https://t.me/RivaldyPratama" }, { name: "Nazwa Adita Amru", initial: "NA", link: "https://t.me/nazwaadita" }, { name: "Nazwan Naufal Azmi", initial: "NN", link: "https://t.me/nazwannaufal" }, { name: "Oryza Sativa", initial: "OS", link: "https://t.me/oryzative" }, { name: "Rizki Mikael Siregar", initial: "RM", link: "https://t.me/mikaelsrgr" }, { name: "Sofwa Widina", initial: "SW", link: "https://t.me/ofswa" }, { name: "Tabina Huriyah Ramaniya", initial: "TH", link: "https://t.me/hrtbinna" }, { name: "Yolla Dzakya Fathira", initial: "YZ", link: "https://t.me/Yollaaadz" }, { name: "Zidni Ilman", initial: "ZI", link: "https://t.me/zidniilmann" }
+        ];
+
+        function displayQuickLinks() {
+            const container = document.querySelector('#quick-links .grid');
+            if (!container) return;
+            container.innerHTML = quickLinks.map((link, index) => `
+                <a href="${link.href}" target="_blank" rel="noopener noreferrer" class="link-card group flex items-center p-3 bg-slate-800/50 hover:bg-slate-700/70 rounded-lg transition-all duration-300 border border-slate-700 hover:border-sky-500/50 transform hover:scale-[1.03]" style="animation-delay: ${index * 50}ms;">
+                    <svg class="w-6 h-6 text-sky-400 group-hover:text-sky-300 transition-colors" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                      ${link.icon}
+                    </svg>
+                    <span class="ml-3 text-sm font-medium text-slate-300 group-hover:text-white">${link.title}</span>
+                </a>
+            `).join('');
+        }
+
+        function displayAssistants() {
+            const container = document.querySelector('#assistant-contacts .space-y-3');
+            if (!container) return;
+            container.innerHTML = assistants.map(assistant => `
                 <a href="${assistant.link}" target="_blank" rel="noopener noreferrer" class="group flex items-center p-3 bg-slate-800/50 hover:bg-slate-700/70 rounded-lg transition-all duration-300 border border-transparent hover:border-sky-500/50 transform hover:scale-[1.02]">
                     <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-slate-700 group-hover:bg-sky-500 rounded-md font-bold text-sm text-sky-300 group-hover:text-white transition-colors">
                         ${assistant.initial}
@@ -137,7 +153,10 @@
             `).join('');
         }
 
-        document.addEventListener('DOMContentLoaded', displayContacts);
+        document.addEventListener('DOMContentLoaded', () => {
+            displayQuickLinks();
+            displayAssistants();
+        });
         
         // --- Plexus Live Background Script ---
         const canvas = document.getElementById('plexus-canvas');
@@ -163,21 +182,17 @@
 
         const draw = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
             particles.forEach(p => {
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(14, 165, 233, 0.7)'; // sky-500
+                ctx.fillStyle = 'rgba(14, 165, 233, 0.7)';
                 ctx.fill();
-
                 p.x += p.vx;
                 p.y += p.vy;
-
                 if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
                 if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
             });
 
-            // Connect particles
             const connectDistance = Math.min(canvas.width, canvas.height) / 7;
             for (let i = 0; i < particles.length; i++) {
                 for (let j = i + 1; j < particles.length; j++) {
@@ -186,14 +201,13 @@
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(56, 189, 248, ${1 - dist / connectDistance})`; // sky-400
+                        ctx.strokeStyle = `rgba(56, 189, 248, ${1 - dist / connectDistance})`;
                         ctx.lineWidth = 0.5;
                         ctx.stroke();
                     }
                 }
             }
 
-             // Connect to mouse
             if (mouse.x && mouse.y) {
                  particles.forEach(p => {
                     const dist = Math.hypot(p.x - mouse.x, p.y - mouse.y);
@@ -207,20 +221,12 @@
                     }
                  });
             }
-
-
             requestAnimationFrame(draw);
         };
         
         window.addEventListener('resize', setup);
-        window.addEventListener('mousemove', e => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-        });
-        window.addEventListener('mouseout', () => {
-            mouse.x = null;
-            mouse.y = null;
-        });
+        window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+        window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
 
         setup();
         draw();
